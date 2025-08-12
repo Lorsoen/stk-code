@@ -280,7 +280,7 @@ void SoccerWorld::init()
     m_ball         = NULL;
     m_ball_body    = NULL;
     m_goal_target  = RaceManager::get()->getMaxGoal();
-    m_goal_sound   = SFXManager::get()->createSoundSource("goal_scored");
+    m_goal_sound   = SFXManager::get()->createSoundSource("races/goal_scored");
 
     Track *track = Track::getCurrentTrack();
     if (track->hasNavMesh())

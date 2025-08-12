@@ -97,7 +97,7 @@ void ClientLobby::destroyBackgroundDownload()
 }
 
 // ============================================================================
-/** The protocol that manages starting a race with the server. It uses a 
+/** The protocol that manages starting a race with the server. It uses a
  *  finite state machine:
 \dot
 digraph interaction {
@@ -237,7 +237,7 @@ bool ClientLobby::notifyEventAsynchronous(Event* event)
             default:                                                     break;
         }   // switch
     } // message
-    else if (event->getType() == EVENT_TYPE_DISCONNECTED) 
+    else if (event->getType() == EVENT_TYPE_DISCONNECTED)
     {
         // This means we left essentially.
         // We can't delete STKHost from this thread, since the main
@@ -609,7 +609,7 @@ void ClientLobby::receivePlayerVote(Event* event)
  *  \param event : Event providing the information.
  *
  *  Format of the data :
- *  Byte 0 
+ *  Byte 0
  *       --------------
  *  Size |    1       |
  *  Data | player id *|
@@ -631,7 +631,7 @@ void ClientLobby::disconnectedPlayer(Event* event)
         !RaceEventManager::get()->isRaceOver();
 
     if (!in_game_world)
-        SFXManager::get()->quickSound("appear");
+        SFXManager::get()->quickSound("items/appear");
     for (unsigned i = 0; i < disconnected_player_count; i++)
     {
         std::string name;
@@ -827,7 +827,7 @@ void ClientLobby::updatePlayerList(Event* event)
     if (m_waiting_for_game && !waiting)
     {
         // The waiting game finished
-        SFXManager::get()->quickSound("wee");
+        SFXManager::get()->quickSound("items/wee");
     }
 
     m_waiting_for_game = waiting;
@@ -888,7 +888,7 @@ void ClientLobby::updatePlayerList(Event* event)
     // Notification sound for new player
     if (!m_total_players.empty() &&
         total_players.size() > m_total_players.size())
-        SFXManager::get()->quickSound("energy_bar_full");
+        SFXManager::get()->quickSound("ui/energy_bar_full");
     m_total_players = total_players;
 
     if (!GUIEngine::isNoGraphics())
@@ -898,7 +898,7 @@ void ClientLobby::updatePlayerList(Event* event)
 //-----------------------------------------------------------------------------
 void ClientLobby::handleBadTeam()
 {
-    SFXManager::get()->quickSound("anvil");
+    SFXManager::get()->quickSound("ui/anvil");
     //I18N: Display when all players are in red or blue team, which the race
     //will not be allowed to start
     core::stringw msg = _("All players joined red or blue team.");
@@ -908,7 +908,7 @@ void ClientLobby::handleBadTeam()
 //-----------------------------------------------------------------------------
 void ClientLobby::handleBadConnection()
 {
-    SFXManager::get()->quickSound("anvil");
+    SFXManager::get()->quickSound("ui/anvil");
     core::stringw msg = _("Bad network connection is detected.");
     MessageQueue::add(MessageQueue::MT_ERROR, msg);
 }   // handleBadConnection
@@ -919,7 +919,7 @@ void ClientLobby::becomingServerOwner()
     if (STKHost::get()->isClientServer())
         return;
 
-    SFXManager::get()->quickSound("wee");
+    SFXManager::get()->quickSound("items/wee");
     //I18N: Display when a player is allow to control the server
     core::stringw msg = _("You are now the owner of server.");
     MessageQueue::add(MessageQueue::MT_GENERIC, msg);
@@ -930,7 +930,7 @@ void ClientLobby::handleChat(Event* event)
 {
     if (!UserConfigParams::m_lobby_chat)
         return;
-    SFXManager::get()->quickSound("plopp");
+    SFXManager::get()->quickSound("ui/plopp");
     core::stringw message;
     event->data().decodeString16(&message);
     Log::info("ClientLobby", "%s", StringUtils::wideToUtf8(message).c_str());
@@ -950,7 +950,7 @@ void ClientLobby::handleChat(Event* event)
  *  \param event : Event providing the information.
  *
  *  Format of the data :
- *  Byte 0 
+ *  Byte 0
  *       ----------------
  *  Size |      1       |
  *  Data | refusal code |
@@ -1054,7 +1054,7 @@ void ClientLobby::startGame(Event* event)
  */
 void ClientLobby::startSelection(Event* event)
 {
-    SFXManager::get()->quickSound("wee");
+    SFXManager::get()->quickSound("items/wee");
     const NetworkString& data = event->data();
     startVotingPeriod(data.getFloat());
     bool skip_kart_screen = data.getUInt8() == 1;
@@ -1266,9 +1266,9 @@ void ClientLobby::backToLobby(Event *event)
     if (!msg.empty())
     {
         if (mt == MessageQueue::MT_GENERIC)
-            SFXManager::get()->quickSound("plopp");
+            SFXManager::get()->quickSound("ui/plopp");
         else
-            SFXManager::get()->quickSound("anvil");
+            SFXManager::get()->quickSound("ui/anvil");
         MessageQueue::add(mt, msg);
     }
 }   // backToLobby
@@ -1447,7 +1447,7 @@ void ClientLobby::handleKartInfo(Event* event)
         // I18N: Show when player join the started game in network
         msg = _("%s joined the game.", player_name);
     }
-    SFXManager::get()->quickSound("energy_bar_full");
+    SFXManager::get()->quickSound("ui/energy_bar_full");
     MessageQueue::add(MessageQueue::MT_FRIEND, msg);
 }   // handleKartInfo
 

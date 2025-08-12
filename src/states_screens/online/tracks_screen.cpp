@@ -148,11 +148,11 @@ void TracksScreen::eventCallback(Widget* widget, const std::string& name,
         RibbonWidget* tabs = this->getWidget<RibbonWidget>("trackgroups");
         UserConfigParams::m_last_used_track_group = tabs->getSelectionIDString(0);
         buildTrackList();
-        
+
         if (m_network_tracks)
         {
             auto cl = LobbyProtocol::get<ClientLobby>();
-    
+
             const PeerVote* vote = cl->getVote(STKHost::get()->getMyHostId());
             if (vote)
             {
@@ -347,8 +347,8 @@ void TracksScreen::beforeAddingWidget()
     RaceManager::MinorRaceModeType minor_mode = RaceManager::get()->getMinorMode();
     bool is_soccer = minor_mode == RaceManager::MINOR_MODE_SOCCER;
     bool is_arena = is_soccer || RaceManager::get()->isBattleMode();
-    
-    const std::vector<std::string>& groups = 
+
+    const std::vector<std::string>& groups =
                         is_arena ? track_manager->getAllArenaGroups(is_soccer)
                                  : track_manager->getAllTrackGroups();
     const int group_amount = (int)groups.size();
@@ -358,7 +358,7 @@ void TracksScreen::beforeAddingWidget()
         //I18N: name of the tab that will show tracks from all groups
         tabs->addTextChild( _("All"), ALL_TRACK_GROUPS_ID );
     }
-    
+
     // Make group names being picked up by gettext
 #define FOR_GETTEXT_ONLY(x)
     //I18N: track group name
@@ -633,7 +633,7 @@ void TracksScreen::buildTrackList()
         curr_tracks.insert(curr_tracks.end(), curr_soccers.begin(), curr_soccers.end());
         std::sort(curr_tracks.begin(), curr_tracks.end());
         curr_tracks.resize(std::unique(curr_tracks.begin(), curr_tracks.end()) - curr_tracks.begin());
-        
+
         const int track_amount = (int)curr_tracks.size();
 
         for (int n = 0; n < track_amount; n++)
@@ -802,7 +802,7 @@ void TracksScreen::addVote(uint32_t host_id, const PeerVote& vote)
     {
         // Sound effect like lobby chat
         if (GUIEngine::getCurrentScreen() == this)
-            SFXManager::get()->quickSound("plopp");
+            SFXManager::get()->quickSound("ui/plopp");
         m_index_to_hostid.push_back(host_id);
     }
     if (host_id == STKHost::get()->getMyHostId() && m_laps && m_reversed)
@@ -861,9 +861,9 @@ void TracksScreen::updatePlayerVotes()
     auto cl = LobbyProtocol::get<ClientLobby>();
     if (GUIEngine::getCurrentScreen() != this || !cl || !m_vote_list)
         return;
-    
+
     std::string selected_name = m_vote_list->getSelectionInternalName();
-    
+
     m_vote_list->clear();
     for (unsigned i = 0; i < m_index_to_hostid.size(); i++)
     {
@@ -928,7 +928,7 @@ void TracksScreen::updatePlayerVotes()
                 StringUtils::toString(m_index_to_hostid[i]), row);
         }
     }
-    
+
     if (!selected_name.empty())
     {
         int id = m_vote_list->getItemID(selected_name);

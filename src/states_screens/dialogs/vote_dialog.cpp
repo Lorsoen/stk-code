@@ -208,7 +208,7 @@ void VoteDialog::updateFetchVote()
     }   // isSuccess
     else
     {
-        SFXManager::get()->quickSound("anvil");
+        SFXManager::get()->quickSound("ui/anvil");
         m_info_widget->setErrorColor();
         m_info_widget->setText(m_fetch_vote_request->getInfo(), false);
         m_cancel_widget->setActive(true);
@@ -240,7 +240,7 @@ void VoteDialog::onUpdate(float dt)
             }   // isSuccess
             else
             {
-                SFXManager::get()->quickSound( "anvil" );
+                SFXManager::get()->quickSound( "ui/anvil" );
                 m_info_widget->setErrorColor();
                 m_info_widget->setText(m_perform_vote_request->getInfo(), false);
                 m_cancel_widget->setActive(true);

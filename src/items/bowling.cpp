@@ -37,7 +37,7 @@ Bowling::Bowling(AbstractKart *kart)
         : Flyable(kart, PowerupManager::POWERUP_BOWLING, 50.0f /* mass */)
 {
     m_has_hit_kart = false;
-    m_roll_sfx = SFXManager::get()->createSoundSource("bowling_roll");
+    m_roll_sfx = SFXManager::get()->createSoundSource("items/bowling_roll");
     fixSFXSplitscreen(m_roll_sfx);
     m_roll_sfx->play();
     m_roll_sfx->setLoop(true);
@@ -99,8 +99,8 @@ bool Bowling::updateAndDelete(int ticks)
             m_body->applyCentralForce(direction);
         }
     }
-    
-   
+
+
     // Bowling balls lose energy (e.g. when hitting the track), so increase
     // the speed if the ball is too slow, but only if it's not too high (if
     // the ball is too high, it is 'pushed down', which can reduce the
@@ -192,9 +192,9 @@ HitEffect* Bowling::getHitEffect() const
     if (m_deleted_once)
         return NULL;
     if(m_has_hit_kart)
-        return new HitSFX(getXYZ(), "strike");
+        return new HitSFX(getXYZ(), "races/strike");
     else
-        return new HitSFX(getXYZ(), "crash");
+        return new HitSFX(getXYZ(), "races/crash");
 }   // getHitEffect
 
 // ----------------------------------------------------------------------------

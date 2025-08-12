@@ -85,12 +85,12 @@ LocalPlayerController::LocalPlayerController(AbstractKart *kart,
         m_camera_index = camera->getIndex();
     }
 
-    m_wee_sound    = SFXManager::get()->createSoundSource("wee");
-    m_bzzt_sound   = SFXManager::get()->getBuffer("bzzt");
-    m_ugh_sound    = SFXManager::get()->getBuffer("ugh");
-    m_grab_sound   = SFXManager::get()->getBuffer("grab_collectable");
-    m_full_sound   = SFXManager::get()->getBuffer("energy_bar_full");
-    m_unfull_sound = SFXManager::get()->getBuffer("energy_bar_unfull");
+    m_yay_sound    = SFXManager::get()->createSoundSource("karts/default/yay");
+    m_phew_sound   = SFXManager::get()->getBuffer("karts/default/phew");
+    m_ugh_sound    = SFXManager::get()->getBuffer("karts/default/ugh");
+    m_grab_sound   = SFXManager::get()->getBuffer("ui/grab_collectable");
+    m_full_sound   = SFXManager::get()->getBuffer("ui/energy_bar_full");
+    m_unfull_sound = SFXManager::get()->getBuffer("ui/energy_bar_unfull");
 
     m_is_above_nitro_target = false;
     initParticleEmitter();
@@ -101,7 +101,7 @@ LocalPlayerController::LocalPlayerController(AbstractKart *kart,
  */
 LocalPlayerController::~LocalPlayerController()
 {
-    m_wee_sound->deleteSFX();
+    m_yay_sound->deleteSFX();
 }   // ~LocalPlayerController
 
 //-----------------------------------------------------------------------------
@@ -299,7 +299,7 @@ void LocalPlayerController::update(int ticks)
     else if (!m_kart->getKartAnimation() && m_sound_schedule == true)
     {
         m_sound_schedule = false;
-        m_kart->playSound(m_bzzt_sound);
+        m_kart->playSound(m_phew_sound);
     }
 }   // update
 
@@ -336,7 +336,7 @@ void LocalPlayerController::displayPenaltyWarning()
             GUIEngine::getSkin()->getColor("font::normal"), true /* important */,
             false /*  big font */, true /* outline */);
     }
-    m_kart->playSound(m_bzzt_sound);
+    m_kart->playSound(m_phew_sound);
 }   // displayPenaltyWarning
 
 //-----------------------------------------------------------------------------
@@ -386,10 +386,10 @@ void LocalPlayerController::handleZipper(bool play_sound)
     // Only play a zipper sound if it's not already playing, and
     // if the material has changed (to avoid machine gun effect
     // on conveyor belt zippers).
-    if (play_sound || (m_wee_sound->getStatus() != SFXBase::SFX_PLAYING &&
+    if (play_sound || (m_yay_sound->getStatus() != SFXBase::SFX_PLAYING &&
                        m_kart->getMaterial()!=m_kart->getLastMaterial()      ) )
     {
-        m_wee_sound->play();
+        m_yay_sound->play();
     }
 
 #ifndef SERVER_ONLY

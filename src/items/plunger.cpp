@@ -207,7 +207,7 @@ bool Plunger::hit(AbstractKart *kart, PhysicalObject *obj)
                 !m_has_locally_played_sound)
             {
                 m_has_locally_played_sound = true;
-                SFXManager::get()->quickSound("plunger");
+                SFXManager::get()->quickSound("items/plunger");
             }
         }
 

@@ -123,7 +123,7 @@ void ServerSelection::loadedFromFile()
 }   // loadedFromFile
 
 // ----------------------------------------------------------------------------
-/** Clear the server list, which will be reloaded. 
+/** Clear the server list, which will be reloaded.
  */
 void ServerSelection::beforeAddingWidget()
 {
@@ -204,7 +204,7 @@ void ServerSelection::init()
         assert(tex);
         m_icon_bank->addTextureAsSprite(tex);
     }
-    
+
     m_server_list_widget->setIcons(m_icon_bank, 2.0f);
     m_sort_desc = false;
     refresh();
@@ -426,12 +426,12 @@ void ServerSelection::onUpdate(float dt)
         ServerInfoDialog *sid = new ServerInfoDialog(m_servers[0]);
         sid->requestJoin();
     }
-    
+
     if (m_server_list && m_server_list->m_list_updated && !m_refreshing_server &&
         !NetworkConfig::get()->isWAN())
     {
         m_refresh_timer += dt;
-        
+
         if (m_refresh_timer > 10.0f)
         {
             refresh();
@@ -496,7 +496,7 @@ void ServerSelection::onUpdate(float dt)
         }
         else
         {
-            SFXManager::get()->quickSound("anvil");
+            SFXManager::get()->quickSound("ui/anvil");
             m_server_list_widget->clear();
             m_server_list_widget->addItem("loading",
                                           _("No server is available."));

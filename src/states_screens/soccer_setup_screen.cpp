@@ -79,7 +79,7 @@ void SoccerSetupScreen::eventCallback(Widget* widget, const std::string& name,
                     m_kart_view_info[i].view->setBadge(OK_BADGE);
                 }
             }
-            SFXManager::get()->quickSound( "wee" );
+            SFXManager::get()->quickSound( "items/wee" );
             m_schedule_continue = true;
         }
         else
@@ -280,12 +280,12 @@ GUIEngine::EventPropagation SoccerSetupScreen::filterActions(PlayerAction action
 {
     if(m_schedule_continue)
         return EVENT_BLOCK;
-        
+
     const bool pressed_down = value > Input::MAX_VALUE*2/3;
-    
+
     if (!pressed_down)
         return EVENT_BLOCK;
-    
+
 
     ButtonWidget* bt_continue = getWidget<ButtonWidget>("continue");
     BubbleWidget* bubble = getWidget<BubbleWidget>("choose_team");
@@ -338,7 +338,7 @@ GUIEngine::EventPropagation SoccerSetupScreen::filterActions(PlayerAction action
                                             KART_CONFIRMATION_ROTATION_SPEED);
             m_kart_view_info[playerId].view->setBadge(OK_BADGE);
             m_kart_view_info[playerId].view->unsetBadge(BAD_BADGE);
-            SFXManager::get()->quickSound( "wee" );
+            SFXManager::get()->quickSound( "items/wee" );
         }
 
         if (areAllKartsConfirmed())
@@ -354,8 +354,8 @@ GUIEngine::EventPropagation SoccerSetupScreen::filterActions(PlayerAction action
         {
             return EVENT_LET;
         }
-        
-        if ((!m_kart_view_info[playerId].confirmed) && 
+
+        if ((!m_kart_view_info[playerId].confirmed) &&
             (playerId == PLAYER_ID_GAME_MASTER))
         {
             return EVENT_LET;

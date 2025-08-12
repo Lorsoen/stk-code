@@ -98,7 +98,7 @@ KartProperties::KartProperties(const std::string &filename)
     m_version                    = 0;
     m_color                      = video::SColor(255, 0, 0, 0);
     m_shape                      = 32;  // close enough to a circle.
-    m_engine_sfx_type            = "engine_small";
+    m_engine_sfx_type            = "races/engine_small";
     m_nitro_min_consumption      = 64;
     // The default constructor for stk_config uses filename=""
     if (filename != "")
@@ -149,7 +149,7 @@ void KartProperties::copyForPlayer(const KartProperties *source,
     {
         return;
     }
-    
+
     *this = *source;
 
     // After the memcpy any pointers will be shared.
@@ -555,7 +555,7 @@ void KartProperties::getAllData(const XMLNode * root)
             else if (custom_skid_sound == "default")
             {
                 // Default skid sound
-                m_skid_sound = "skid";
+                m_skid_sound = "races/skid";
             }
             fallback_skid_sound = false;
         }
@@ -584,11 +584,11 @@ void KartProperties::getAllData(const XMLNode * root)
                 Log::error("[KartProperties]",
                     "Kart '%s' has an invalid custom engine file '%s'.",
                     m_name.c_str(), full_path.c_str());
-                m_engine_sfx_type = "engine_small";
+                m_engine_sfx_type = "races/engine_small";
             }
         }
-        else if (s == "large") m_engine_sfx_type = "engine_large";
-        else if (s == "small") m_engine_sfx_type = "engine_small";
+        else if (s == "large") m_engine_sfx_type = "races/engine_large";
+        else if (s == "small") m_engine_sfx_type = "races/engine_small";
         else
         {
             if (SFXManager::get()->soundExist(s))
@@ -600,7 +600,7 @@ void KartProperties::getAllData(const XMLNode * root)
                 Log::error("[KartProperties]",
                            "Kart '%s' has an invalid engine '%s'.",
                            m_name.c_str(), s.c_str());
-                m_engine_sfx_type = "engine_small";
+                m_engine_sfx_type = "races/engine_small";
             }
         }
 
@@ -635,7 +635,7 @@ void KartProperties::getAllData(const XMLNode * root)
     if (fallback_skid_sound)
     {
         if (m_kart_model && m_kart_model->hasWheel())
-            m_skid_sound = "skid";
+            m_skid_sound = "races/skid";
     }
 }   // getAllData
 

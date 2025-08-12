@@ -77,7 +77,7 @@ AddonsLoading::AddonsLoading(const std::string &id)
     m_progress         = getWidget<ProgressBarWidget>("progress");
     m_install_button   = getWidget<IconButtonWidget> ("install" );
     m_back_button      = getWidget<IconButtonWidget> ("back"  );
-    
+
     RibbonWidget* actions = getWidget<RibbonWidget>("actions");
     actions->setFocusForPlayer(PLAYER_ID_GAME_MASTER);
     actions->select("back", PLAYER_ID_GAME_MASTER);
@@ -243,7 +243,7 @@ GUIEngine::EventPropagation AddonsLoading::processEvent(const std::string& event
     {
         const std::string& selection =
                 actions_ribbon->getSelectionIDString(PLAYER_ID_GAME_MASTER);
-        
+
         if(selection == "back")
         {
             dismiss();
@@ -288,7 +288,7 @@ void AddonsLoading::voteClicked()
     }
     else
     {
-        SFXManager::get()->quickSound("anvil");
+        SFXManager::get()->quickSound("ui/anvil");
         if (!m_message_shown)
         {
             MessageQueue::add(MessageQueue::MT_ERROR,

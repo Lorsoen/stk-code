@@ -38,7 +38,7 @@ using namespace GUIEngine;
 using namespace irr::core;
 
 // -----------------------------------------------------------------------------
-GrandPrixEditorScreen::GrandPrixEditorScreen() 
+GrandPrixEditorScreen::GrandPrixEditorScreen()
                      : Screen("grand_prix_editor.stkgui"), m_selection(NULL),
                        m_gpgroup(GrandPrixData::GP_NONE)
 {
@@ -315,7 +315,7 @@ void GrandPrixEditorScreen::onConfirm()
     {
         grand_prix_manager->remove(m_selection->getId());
         loadGPList();
-        
+
         if (grand_prix_manager->getNumberOfGrandPrix() > 0)
         {
             setSelection(grand_prix_manager->getGrandPrix(0));
@@ -349,7 +349,7 @@ bool GrandPrixEditorScreen::validateName(LabelWidget* label,
     if (name.size() == 0)
     {
         label->setText(_("Name is empty."), false);
-        SFXManager::get()->quickSound("anvil");
+        SFXManager::get()->quickSound("ui/anvil");
         return false;
     }
     else if (grand_prix_manager->existsName(name) ||
@@ -357,13 +357,13 @@ bool GrandPrixEditorScreen::validateName(LabelWidget* label,
     {
         // check for duplicate names
         label->setText(_("Another grand prix with this name already exists."), false);
-        SFXManager::get()->quickSound("anvil");
+        SFXManager::get()->quickSound("ui/anvil");
         return false;
     }
     else if (name.size() > 30)
     {
         label->setText(_("Name is too long."), false);
-        SFXManager::get()->quickSound("anvil");
+        SFXManager::get()->quickSound("ui/anvil");
         return false;
     }
     else

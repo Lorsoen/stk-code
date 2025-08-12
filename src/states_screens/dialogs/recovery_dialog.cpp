@@ -119,7 +119,7 @@ void RecoveryDialog::processInput()
     if (username.size() < 4 || username.size() > 30 ||
         email.size() < 4    || email.size() > 50       )
     {
-        SFXManager::get()->quickSound("anvil");
+        SFXManager::get()->quickSound("ui/anvil");
         m_info_widget->setErrorColor();
         m_info_widget->setText(_("Username and/or email address invalid."),
                                false);
@@ -197,7 +197,7 @@ void RecoveryDialog::onUpdate(float dt)
             }
             else
             {
-                SFXManager::get()->quickSound( "anvil" );
+                SFXManager::get()->quickSound( "ui/anvil" );
                 m_info_widget->setErrorColor();
                 m_info_widget->setText(m_recovery_request->getInfo(), false);
                 m_options_widget->setActive(true);

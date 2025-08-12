@@ -83,7 +83,7 @@ void KartRewinder::reset()
 /** This function is called immediately before a rewind is done and saves
  *  the current transform for the kart. The difference between this saved
  *  transform and the new transform after rewind is the error that needs
- *  (smoothly) be applied to the graphical position of the kart. 
+ *  (smoothly) be applied to the graphical position of the kart.
  */
 void KartRewinder::saveTransform()
 {
@@ -120,7 +120,7 @@ void KartRewinder::computeError()
         const int kartid = getWorldKartId();
         Log::debug("KartRewinder", "Kart id %d disconnected.", kartid);
 
-        SFXManager::get()->quickSound("appear");
+        SFXManager::get()->quickSound("items/appear");
         core::stringw player_name = getController()->getName();
         // I18N: Message shown in game to tell player left the game in network
         core::stringw msg = _("%s left the game.", player_name);
@@ -267,7 +267,7 @@ BareNetworkString* KartRewinder::saveState(std::vector<std::string>* ru)
 }   // saveState
 
 // ----------------------------------------------------------------------------
-/** Actually rewind to the specified state. 
+/** Actually rewind to the specified state.
  *  \param buffer The buffer with the state info.
  *  \param count Number of bytes that must be used up in this function (not
  *         used).

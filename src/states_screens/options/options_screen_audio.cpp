@@ -105,7 +105,7 @@ void OptionsScreenAudio::eventCallback(Widget* widget, const std::string& name, 
 
         float new_volume = computeVolume(w->getValue(), UserConfigParams::m_volume_denominator);
 
-        UserConfigParams::m_music_numerator = w->getValue(); 
+        UserConfigParams::m_music_numerator = w->getValue();
         music_manager->setMasterMusicVolume(new_volume);
     }
     else if(name == "sfx_volume")
@@ -115,12 +115,12 @@ void OptionsScreenAudio::eventCallback(Widget* widget, const std::string& name, 
         SpinnerWidget* w = dynamic_cast<SpinnerWidget*>(widget);
         assert(w != NULL);
 
-        if (sample_sound == NULL) sample_sound = SFXManager::get()->createSoundSource( "pre_start_race" );
+        if (sample_sound == NULL) sample_sound = SFXManager::get()->createSoundSource( "ui/pre_start_race" );
         sample_sound->setVolume(1);
 
         float new_volume = computeVolume(w->getValue(), UserConfigParams::m_volume_denominator);
         SFXManager::get()->setMasterSFXVolume(new_volume);
-        UserConfigParams::m_sfx_numerator = w->getValue(); 
+        UserConfigParams::m_sfx_numerator = w->getValue();
         UserConfigParams::m_sfx_volume = new_volume;
 
         // play a sample sound to show the user what this volume is like
@@ -153,7 +153,7 @@ void OptionsScreenAudio::eventCallback(Widget* widget, const std::string& name, 
 
         if (UserConfigParams::m_sfx)
         {
-            SFXManager::get()->quickSound("horn");
+            SFXManager::get()->quickSound("races/horn");
             getWidget<SpinnerWidget>("sfx_volume")->setActive(true);
         }
         else

@@ -232,7 +232,7 @@ void OnlineUserSearch::onUpdate(float dt)
             }
             else
             {
-                SFXManager::get()->quickSound( "anvil" );
+                SFXManager::get()->quickSound( "ui/anvil" );
                 new MessageDialog(m_search_request->getInfo());
             }
 

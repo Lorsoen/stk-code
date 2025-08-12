@@ -81,7 +81,7 @@ FocusDispatcher::FocusDispatcher(KartSelectionScreen* parent) : Widget(WTYPE_BUT
     m_parent = parent;
     m_supports_multiplayer = true;
     m_is_initialised = false;
-    
+
     Widget* kartsAreaWidget = parent->getWidget("playerskarts");
     assert(kartsAreaWidget);
 
@@ -352,7 +352,7 @@ void KartSelectionScreen::beforeAddingWidget()
     assert(kart_class != NULL);
     kart_class->m_properties[GUIEngine::PROP_MIN_VALUE] = "0";
     kart_class->m_properties[GUIEngine::PROP_MAX_VALUE] = StringUtils::toString(classes.size());
-    
+
     for (unsigned int i = 0; i < classes.size(); i++)
     {
         // Make the first letter upper-case
@@ -576,7 +576,7 @@ bool KartSelectionScreen::joinPlayer(InputDevice* device, PlayerProfile* p)
     {
         Log::error("KartSelectionScreen", "Maximum number of players "
                   "reached");
-        SFXManager::get()->quickSound( "anvil" );
+        SFXManager::get()->quickSound( "ui/anvil" );
         return false;
     }
 
@@ -718,7 +718,7 @@ bool KartSelectionScreen::playerQuit(StateManager::ActivePlayer* player)
             // then they can't back out
             if (m_kart_widgets[n].isReady())
             {
-                SFXManager::get()->quickSound( "anvil" );
+                SFXManager::get()->quickSound( "ui/anvil" );
                 return true;
             }
 
@@ -860,7 +860,7 @@ void KartSelectionScreen::playerConfirm(const int player_id)
     if (m_kart_widgets[player_id].getKartInternalName().size() == 0 ||
         m_kart_widgets[player_id].getKartInternalName() == RibbonWidget::NO_ITEM_ID)
     {
-        SFXManager::get()->quickSound( "anvil" );
+        SFXManager::get()->quickSound( "ui/anvil" );
         return;
     }
 
@@ -892,7 +892,7 @@ void KartSelectionScreen::playerConfirm(const int player_id)
                 Log::warn("KartSelectionScreen", "You can't select this identity "
                        "or kart, someone already took it!!");
 
-            SFXManager::get()->quickSound( "anvil" );
+            SFXManager::get()->quickSound( "ui/anvil" );
             return;
         }
 
@@ -1208,7 +1208,7 @@ void KartSelectionScreen::eventCallback(Widget* widget,
     else if (name == "kart_class" && !m_game_master_confirmed)
     {
         setKartsFromCurrentGroup();
-        
+
         handleKartListFocus();
     }
     else if (name == "continue")
@@ -1263,7 +1263,7 @@ bool KartSelectionScreen::onEscapePressed()
 
 // ----------------------------------------------------------------------------
 
-void KartSelectionScreen::onFocusChanged(GUIEngine::Widget* previous, 
+void KartSelectionScreen::onFocusChanged(GUIEngine::Widget* previous,
                                          GUIEngine::Widget* focus, int playerID)
 {
     if (playerID == PLAYER_ID_GAME_MASTER || !previous || !focus)
@@ -1400,7 +1400,7 @@ void KartSelectionScreen::allPlayersDone()
                 }
             }
         }
-        
+
         if (n == PLAYER_ID_GAME_MASTER)
         {
             UserConfigParams::m_default_kart = selected_kart;
@@ -1416,8 +1416,8 @@ void KartSelectionScreen::allPlayersDone()
     // ---- Switch to assign mode
     input_manager->getDeviceManager()->setAssignMode(ASSIGN);
 
-    StateManager::ActivePlayer *ap = m_multiplayer 
-                                   ? NULL 
+    StateManager::ActivePlayer *ap = m_multiplayer
+                                   ? NULL
                                    : StateManager::get()->getActivePlayer(0);
     input_manager->getDeviceManager()->setSinglePlayer(ap);
 
@@ -1695,14 +1695,14 @@ PtrVector<const KartProperties, REF> KartSelectionScreen::getUsableKarts(
         // Ignore karts that are not in the selected group
         if(isIgnored(prop->getIdent()))
             continue;
-        
+
         // Check if there's text in search bar
         core::stringw search_text = m_search_box->getText();
             search_text.make_lower();
         if (!search_text.empty() &&
             prop->getName().make_lower().find(search_text.c_str()) == -1)
             continue;
-        
+
         if (kart_class->getValue() != (int)classes.size() &&
             classes[kart_class->getValue()] != prop->getKartType())
             continue;
@@ -1720,7 +1720,7 @@ void KartSelectionScreen::setKartsFromCurrentGroup()
     kart_properties_manager->setFavoriteKartStatus(
         PlayerManager::getCurrentPlayer()->getFavoriteKartStatus()
     );
-    
+
     RibbonWidget* tabs = getWidget<RibbonWidget>("kartgroups");
     assert(tabs != NULL);
 

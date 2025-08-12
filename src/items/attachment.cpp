@@ -264,7 +264,7 @@ void Attachment::rewindTo(BareNetworkString *buffer)
 
 // -----------------------------------------------------------------------------
 /** Selects the new attachment. In order to simplify synchronisation with the
- *  server, the new item is based on the current world time. 
+ *  server, the new item is based on the current world time.
  *  \param item The item that was collected.
  */
 void Attachment::hitBanana(ItemState *item_state)
@@ -328,8 +328,8 @@ void Attachment::hitBanana(ItemState *item_state)
         // default time. This is necessary to avoid that a kart lands on the
         // same banana again once the explosion animation is finished, giving
         // the kart the same penalty twice.
-        int ticks = 
-            std::max(item_state->getTicksTillReturn(), 
+        int ticks =
+            std::max(item_state->getTicksTillReturn(),
                      stk_config->time2Ticks(kp->getExplosionDuration() + 2.0f));
         item_state->setTicksTillReturn(ticks);
         break;
@@ -424,7 +424,7 @@ void Attachment::handleCollisionWithKart(AbstractKart *other)
             {
                 // Don't move if this bomb was from other kart originally
                 other->getAttachment()
-                    ->set(ATTACH_BOMB, 
+                    ->set(ATTACH_BOMB,
                           getTicksLeft()+stk_config->time2Ticks(
                                            stk_config->m_bomb_time_increase),
                           m_kart);
@@ -434,7 +434,7 @@ void Attachment::handleCollisionWithKart(AbstractKart *other)
         }
     }   // type==BOMB
     else if(attachment_other->getType()==Attachment::ATTACH_BOMB &&
-             (attachment_other->getPreviousOwner()!=m_kart || 
+             (attachment_other->getPreviousOwner()!=m_kart ||
                World::getWorld()->getNumKarts() <= 2         )      )
     {
         // Don't attach a bomb when the kart is shielded
@@ -551,7 +551,7 @@ void Attachment::update(int ticks)
             {
                 if (m_bubble_explode_sound) m_bubble_explode_sound->deleteSFX();
                 m_bubble_explode_sound =
-                    SFXManager::get()->createSoundSource("bubblegum_explode");
+                    SFXManager::get()->createSoundSource("items/bubblegum_explode");
                 m_bubble_explode_sound->setPosition(m_kart->getXYZ());
                 m_bubble_explode_sound->play();
             }
@@ -676,7 +676,7 @@ void Attachment::updateGraphics(float dt)
     {
         if (!m_bomb_sound)
         {
-            m_bomb_sound = SFXManager::get()->createSoundSource("clock");
+            m_bomb_sound = SFXManager::get()->createSoundSource("items/clock");
             m_bomb_sound->setLoop(true);
             m_bomb_sound->play();
         }
@@ -709,7 +709,7 @@ void Attachment::updateGraphics(float dt)
  */
 float Attachment::weightAdjust() const
 {
-    return m_type == ATTACH_ANVIL 
-           ? m_kart->getKartProperties()->getAnvilWeight() 
+    return m_type == ATTACH_ANVIL
+           ? m_kart->getKartProperties()->getAnvilWeight()
           : 0.0f;
 }   // weightAdjust

@@ -187,9 +187,9 @@ void Swatter::updateGraphics(float dt)
         if (!m_swat_sound)
         {
             if (m_kart->getIdent() == "nolok")
-                m_swat_sound = SFXManager::get()->createSoundSource("hammer");
+                m_swat_sound = SFXManager::get()->createSoundSource("items/hammer");
             else
-                m_swat_sound = SFXManager::get()->createSoundSource("swatter");
+                m_swat_sound = SFXManager::get()->createSoundSource("items/swatter");
         }
         if (!m_discard_now)
         {

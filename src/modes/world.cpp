@@ -978,7 +978,7 @@ void World::updateTimeTargetSound()
             getTimeTicks() % stk_config->time2Ticks(1.0f) == 0 &&
             !World::getWorld()->isRaceOver() && time_left > 0)
     {
-        SFXManager::get()->quickSound("pre_start_race");
+        SFXManager::get()->quickSound("ui/pre_start_race");
     }
 }  // updateTimeTargetSound
 

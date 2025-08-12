@@ -87,7 +87,7 @@ void OnlineProfileSettings::eventCallback(Widget* widget, const std::string& nam
             {
                 lw->setText(_("New Email has to be between 5 and 254 characters long!"), false);
                 lw->setErrorColor();
-                SFXManager::get()->quickSound("anvil");
+                SFXManager::get()->quickSound("ui/anvil");
                 return false;
             }
             else if (  new_email.find(L"@")== -1 || new_email.find(L".")== -1 ||
@@ -96,7 +96,7 @@ void OnlineProfileSettings::eventCallback(Widget* widget, const std::string& nam
             {
                 lw->setText(_("New Email is invalid!"), false);
                 lw->setErrorColor();
-                SFXManager::get()->quickSound("anvil");
+                SFXManager::get()->quickSound("ui/anvil");
                 return false;
             }
             else
@@ -105,7 +105,7 @@ void OnlineProfileSettings::eventCallback(Widget* widget, const std::string& nam
                 changeEmail(new_email);
                 return true;
             }
-            
+
         });
     }
 }   // eventCallback

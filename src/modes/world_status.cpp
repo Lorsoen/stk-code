@@ -46,9 +46,9 @@ WorldStatus::WorldStatus() : m_process_type(STKProcess::getType()), m_started_at
     m_clock_mode        = CLOCK_CHRONO;
     m_phase             = SETUP_PHASE;
 
-    m_prestart_sound    = SFXManager::get()->createSoundSource("pre_start_race");
-    m_start_sound       = SFXManager::get()->createSoundSource("start_race");
-    m_track_intro_sound = SFXManager::get()->createSoundSource("track_intro");
+    m_prestart_sound    = SFXManager::get()->createSoundSource("ui/pre_start_race");
+    m_start_sound       = SFXManager::get()->createSoundSource("ui/start_race");
+    m_track_intro_sound = SFXManager::get()->createSoundSource("ui/track_intro");
     m_time            = 0.0f;
     m_time_ticks      = 0;
     m_auxiliary_ticks = 0;
@@ -84,7 +84,7 @@ void WorldStatus::reset(bool restart)
         stk_config->time2Ticks(stk_config->m_music_credit_time);
     m_live_join_ticks = -1;
     m_engines_started = false;
-    
+
     // Using SETUP_PHASE will play the track into sfx first, and has no
     // other side effects.
     m_phase           = UserConfigParams::m_race_now ? MUSIC_PHASE : SETUP_PHASE;
@@ -219,7 +219,7 @@ void WorldStatus::updateTime(int ticks)
         case SETUP_PHASE:
             m_auxiliary_ticks= 0;
             m_phase = TRACK_INTRO_PHASE;
-            
+
             if (m_play_track_intro_sound)
             {
                 m_track_intro_sound->play();
@@ -255,7 +255,7 @@ void WorldStatus::updateTime(int ticks)
             m_auxiliary_ticks = 0;
 
             // In a networked game the client needs to wait for a notification
-            // from the server that all clients and the server are ready to 
+            // from the server that all clients and the server are ready to
             // start the game. The server will actually wait for all clients
             // to confirm that they have started the race before starting
             // itself. In a normal race, this phase is skipped and the race
@@ -376,7 +376,7 @@ void WorldStatus::updateTime(int ticks)
 
             m_auxiliary_ticks++;
 
-            // In artist debug mode, when without opponents, 
+            // In artist debug mode, when without opponents,
             // skip the ready/set/go counter faster
             if (UserConfigParams::m_artist_debug_mode &&
                 !NetworkConfig::get()->isNetworking() &&
@@ -461,7 +461,7 @@ void WorldStatus::updateTime(int ticks)
     }
 
     IrrlichtDevice *device = irr_driver->getDevice();
-    
+
     switch (m_clock_mode)
     {
         case CLOCK_CHRONO:

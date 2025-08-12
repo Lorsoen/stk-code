@@ -26,7 +26,7 @@
 HitSFX::HitSFX(const Vec3& coord, const char* explosion_sound)
              : HitEffect()
 {
-    m_sfx = SFXManager::get()->createSoundSource( explosion_sound );
+    m_sfx = SFXManager::get()->createSoundSource("races/explosion");
 
     // in multiplayer mode, sounds are NOT positional (because we have
     // multiple listeners) so the sounds of all AIs are constantly heard.

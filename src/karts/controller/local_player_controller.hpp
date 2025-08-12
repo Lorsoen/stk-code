@@ -61,9 +61,15 @@ private:
 
     HandicapLevel m_handicap;
 
+    /** Kart sounds. */
     SFXBase     *m_wee_sound;
-    SFXBuffer   *m_bzzt_sound;
+    SFXBase     *m_yay_sound;
+    SFXBuffer   *m_ouch_sound;
+    SFXBuffer   *m_phew_sound;
     SFXBuffer   *m_ugh_sound;
+
+    /** UI sounds. */
+    SFXBuffer   *m_bzzt_sound;
     SFXBuffer   *m_grab_sound;
     SFXBuffer   *m_full_sound;
     SFXBuffer   *m_unfull_sound;

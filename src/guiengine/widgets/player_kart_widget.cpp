@@ -73,7 +73,7 @@ PlayerKartWidget::PlayerKartWidget(KartSelectionScreen* parent,
     m_player_ident_spinner = new SpinnerWidget();
     m_player_ident_spinner->setUseBackgroundColor();
     m_player_ident_spinner->setSpinnerWidgetPlayerID(m_player_id);
-    
+
     m_player_ident_spinner->m_x = player_name_x;
     m_player_ident_spinner->m_y = player_name_y;
     m_player_ident_spinner->m_w = player_name_w;
@@ -82,7 +82,7 @@ PlayerKartWidget::PlayerKartWidget(KartSelectionScreen* parent,
     // --- Crown icon (Only for the game master)
     m_crown_icon = new IconButtonWidget(IconButtonWidget::SCALE_MODE_KEEP_CUSTOM_ASPECT_RATIO, false, false, IconButtonWidget::ICON_PATH_TYPE_ABSOLUTE);
     m_crown_icon->setImage(file_manager->getAsset(FileManager::GUI_ICON, "crown.png"), IconButtonWidget::ICON_PATH_TYPE_ABSOLUTE);
-    
+
     m_crown_icon->m_x = m_crown_icon_x;
     m_crown_icon->m_y = m_crown_icon_y;
     m_crown_icon->m_w = m_crown_icon_w;
@@ -192,7 +192,7 @@ PlayerKartWidget::PlayerKartWidget(KartSelectionScreen* parent,
     m_kart_internal_name = props->getIdent();
 
     const KartModel &kart_model = props->getMasterKartModel();
-    
+
     float scale = 35.0f;
     if (kart_model.getLength() > 1.45f)
     {
@@ -253,7 +253,7 @@ PlayerKartWidget::PlayerKartWidget(KartSelectionScreen* parent,
         m_parent_screen->m_multiplayer ?
         LabelWidget::TINY_TITLE:
         LabelWidget::SMALL_TITLE);
-    
+
     m_kart_name->setText(props->getName(), false);
     m_kart_name->m_properties[PROP_TEXT_ALIGN] = "center";
     m_kart_name->m_properties[PROP_ID] =
@@ -291,7 +291,7 @@ PlayerKartWidget::~PlayerKartWidget()
 
     if (m_crown_icon->getIrrlichtElement() != NULL)
         m_crown_icon->getIrrlichtElement()->remove();
-        
+
     if (getCurrentScreen() != NULL)
         getCurrentScreen()->manualRemoveWidget(this);
 
@@ -485,7 +485,7 @@ void PlayerKartWidget::markAsReady()
     delete m_player_ident_spinner;
     m_player_ident_spinner = NULL;
 
-    SFXManager::get()->quickSound( "wee" );
+    SFXManager::get()->quickSound( "items/wee" );
 
     m_model_view->setRotateTo(30.0f, 1.0f);
 
@@ -733,9 +733,9 @@ void PlayerKartWidget::setSize(const int x, const int y, const int w, const int 
 
     m_crown_icon_x = x + w / 2 - (player_name_w / 2) - (m_crown_icon_w / 2);
 
-    if (!m_ready && m_left_arrow_width > 0) 
+    if (!m_ready && m_left_arrow_width > 0)
         m_crown_icon_x -= m_left_arrow_width / 2;
-    else 
+    else
         m_crown_icon_x += m_left_arrow_width / 2;
 
     m_crown_icon_y = player_name_y;
